@@ -51,6 +51,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+// !!! может вылетать при первой установке - не обновляется список
 public class MainActivity extends AppCompatActivity {
 
     TextView textView,textView2,textView3;

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">UAH Rate</string>
+    <string name="data_link"><a href="https://www.bank.gov.ua">www.bank.gov.ua</a></string>
+    <string name="accept">Ok</string>
+</resources>

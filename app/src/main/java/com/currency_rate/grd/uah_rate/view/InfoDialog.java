@@ -21,12 +21,10 @@ import static com.currency_rate.grd.uah_rate.MainActivity.LOG_TAG;
 
 public  class InfoDialog extends DialogFragment {
 
-    // @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        // Linkify the message
         final SpannableString link = new SpannableString("https://www.bank.gov.ua");
         Linkify.addLinks(link, Linkify.ALL);
 

@@ -13,10 +13,10 @@ import java.util.Map;
 public class UAHCurrencyRates {
 
     private static final String TAG = "myLogs";
-   // private final static String FILENAME = "my_sample.txt"; // имя файла
+
 
     ArrayList<HashMap<String, String>> mCurrencyList = new ArrayList<>();
-//===========================================   filds DEFAULT   ============================================
+//===========================================   filds DEFAULT   ====================================
 
     public String currencyNumber;
     public String currencyName;
@@ -65,8 +65,8 @@ public class UAHCurrencyRates {
     public void setCurrencyExchangeData(String currencyExchangeData) {
         this.currencyExchangeData = currencyExchangeData;
     }
-    //----------------------------------------------------------------------------------------------
-//------------------------------------- 1 USD ----------------------------------------------------
+
+//------------------------------------- 1 USD ------------------------------------------------------
 
     public String numberUAHUSD;
     public String nameUAHUSD;
@@ -125,9 +125,8 @@ public class UAHCurrencyRates {
         this.exchangeDataUAHUSD = exchangeDataUAHUSD;
     }
 
-    //----------------------------------------------------------------------------------------------
 
-    //------------------------------------- 2 EUR  ----------------------------------------------------
+    //------------------------------------- 2 EUR  -------------------------------------------------
 
     public String numberUAHEUR;
     public String nameUAHEUR;
@@ -183,9 +182,8 @@ public class UAHCurrencyRates {
         this.exchangeDataUAHEUR = exchangeDataUAHEUR;
     }
 
-    //----------------------------------------------------------------------------------------------
 
-    //------------------------------------- 3 RUB  ----------------------------------------------------
+    //------------------------------------- 3 RUB  --------------------------------------------------
 
     public String numberUAHRUB;
     public String nameUAHRUB;
@@ -241,7 +239,7 @@ public class UAHCurrencyRates {
     }
 
 
-    //------------------------------------- 4  GBP  ----------------------------------------------------
+    //------------------------------------- 4  GBP  ------------------------------------------------
     public String numberUAHGBP;
     public String nameUAHGBP;
     public String rateUAHGBP;
@@ -299,9 +297,8 @@ public class UAHCurrencyRates {
         this.exchangeDataUAHGBP = exchangeDataUAHGBP;
     }
 
-    //----------------------------------------------------------------------------------------------
 
-    //------------------------------------- 5 PLN  ----------------------------------------------------
+    //------------------------------------- 5 PLN  -------------------------------------------------
 
     public String numberUAHPLN;
     public String nameUAHPLN;
@@ -360,13 +357,7 @@ public class UAHCurrencyRates {
         this.exchangeDataUAHPLN = exchangeDataUAHPLN;
     }
 
-
-
-    //.......................................
-
-
-
-    //-------------------------------------BYN---------------------------------------------------------
+    //-------------------------------------BYN-------------------------------------------------------
     public String numberUAHBYN;
     public String nameUAHBYN;
     public String rateUAHBYN;
@@ -425,10 +416,10 @@ public class UAHCurrencyRates {
 
     //----------------------------------------------------------------------------------------------
 
-    //=============================== METALs ======================================
+    //=============================== METALs =======================================================
 
 
-    //------------------------------------- 5 GOLD XAU ----------------------------------------------------
+    //------------------------------------- 5 GOLD XAU ---------------------------------------------
 
     public String numberUAHGoldXAU;
     public String nameUAHGoldXAU;
@@ -491,7 +482,7 @@ public class UAHCurrencyRates {
 
     //.......................................
 
-    //------------------------------------- 5 Silver XAU ----------------------------------------------------
+    //------------------------------------- 5 Silver XAU -------------------------------------------
 
     public String numberUAHSilverXAG;
     public String rateUAHSilverXAG;
@@ -552,50 +543,24 @@ public class UAHCurrencyRates {
         this.exchangeDataUAHSilverXAG = exchangeDataUAHSilverXAG;
     }
 
-
-
-    //.......................................
-
-
-    //----------------------------------------------------------------------------------------------
-
-
-
-
-
-    //----------------------------------------------------------------------------------------------
-    // попробывать брать значения в цикле перебором а не заполнять поль
-    // Можно поступить по другому и создавать объекты - создать Фабрик!
-
-    //============================================ Constructor =========================================
+    //============================================ Constructor =====================================
     public UAHCurrencyRates(ArrayList<HashMap<String, String>> myListArray) {
         this.mCurrencyList = myListArray;
-        // ParseData();
 
         ParseDataTwoArray();
     }
-
 
     //============================================ Methods =========================================
 
     private void ParseDataTwoArray() {
 
-        Log.d(TAG, ">>>>>>>>>>>>>>>> Start1 >>>>>>>>>>>>>>>>>>>>>");
+        Log.w(TAG, "--ParseDataTwoArray");
         int loopList=0;
-        /*
-        for(int i = 0; i < myParseList.size(); i++) {
-            loop++;
-            Log.d(TAG, String.valueOf(myParseList.get(i))); //возвращает соответствующий числовой объект, содержащий значение переданного аргумента, простыми словами - преобразует в нужный тип данных. Аргумент может быть примитивного типа данных, String и т.д.
-        }
-        */
 
-
-        // -- sour out item list ( specific currrency )
         for(HashMap cell : mCurrencyList){
             loopList++;
-            // System.out.println(elem+"  ");
-            //  Log.d(TAG, elem+"  ");// size = 7 Contain HashMap
-            Log.d(TAG, " ---====## loopOne "+ loopList+"##===---- ");
+
+            Log.d(TAG, " ---loopOne "+ loopList);
 
             //-------------------------------------
             // HashMap<String, String> hMap = new HashMap<String, String>();
@@ -607,16 +572,6 @@ public class UAHCurrencyRates {
                 loopMap++;
                 Log.d(TAG, " ---====## loop====Two "+ loopMap+"##===---- ");
 
-                /*
-                String keyContent;
-                String valueContent;
-
-                keyContent = String.valueOf(entry.getKey());
-                valueContent = String.valueOf(entry.getValue());
-                Log.d(TAG, "keyContent  "+ keyContent);
-                Log.d(TAG, "valueContents "+valueContent);
-                */
-
                 String key1,key2,key3,key4,key5;
                 key1 = "r030";
                 key2 = "txt";
@@ -626,41 +581,8 @@ public class UAHCurrencyRates {
 
                 //------------ перременные для перехода на следующий цикл---------------------------
 
-
-
                 String valueContent = new String(String.valueOf(content.getValue()));
 
-               // String targetCharCode = new String("UAH");
-                // //------------ перременные для внутреннего цикла---------------------------
-                //valueContent = String.valueOf(entry.getValue());
-                /*
-                String valueContent = new String(String.valueOf(entry.getValue()));
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                String targetCharCode = new String("UAH");
-                */
-
-
-                //-----------------------------------------
-                //switch (targetCharCode == "UAH") {
-                // 0
-                //  switch (targetCharCode.compareTo(String.valueOf(entry.getValue()))) {
-                // switch (targetCharCode.)
                 switch (valueContent)
                 {
                     case "UAH1" :
@@ -867,150 +789,10 @@ public class UAHCurrencyRates {
 
                 } // END switch
 
-
             }
 
-            //-----------------------------------------
+        }
 
-            //===============================================================
-            /*
-                if (loopList == 1){
-
-                    //checkCondition(keyContent , valueContent);
-
-
-
-                  // key1.compareTo(String.valueOf(entry.getKey()));
-                 //   if ( key1  == entry.getKey()) {
-                    if ( 0  == key1.compareTo(String.valueOf(entry.getKey()))) {
-                       // setNumberUAHPLN((String) entry.getKey());
-                        setCurrencyNumber(String.valueOf(entry.getValue()));
-                        //setNameUAHPLN(String.valueOf(entry.getValue()));
-                       // setRateUAHPLN(String.valueOf(entry.getValue()));
-                       // setCharCodeUAHPLN(String.valueOf(entry.getValue()));
-                       // setExchangeDataUAHPLN(String.valueOf(entry.getValue()));
-
-                    }
-                    if ( 0  == key2.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyName(String.valueOf(entry.getValue()));
-                    }
-
-                    if ( 0  == key3.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyCharCode(String.valueOf(entry.getValue()));
-                    }
-
-
-                    if ( 0  == key4.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyCharCode(String.valueOf(entry.getValue()));
-                    }
-
-                   // if ( key5  == String.valueOf(entry.getKey())) {
-                    String myeqals = String.valueOf(entry.getKey());
-                    if ( 0  == key5.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyExchangeData(String.valueOf(entry.getValue()));
-                    }
-
-                    //...........................................
-
-                }
-                if (loopList == 2){
-
-                    if ( 0  == key1.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyNumber(String.valueOf(entry.getValue()));
-                    }
-                    if ( 0  == key2.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyName(String.valueOf(entry.getValue()));
-                    }
-
-                    if ( 0  == key3.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyCharCode(String.valueOf(entry.getValue()));
-                    }
-
-                    if ( 0  == key4.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyCharCode(String.valueOf(entry.getValue()));
-                    }
-                    if ( 0  == key5.compareTo(String.valueOf(entry.getKey()))) {
-                        setCurrencyExchangeData(String.valueOf(entry.getValue()));
-                    }
-
-                }
-
-
-                //-----------------------------------------------------
-                    /*
-                String str1 = "Гривня";
-                String str2 = "EURRUB";
-
-                //compareTo()  -  return 0 - if compares strings is true
-                // entry.getValue() - проверка на содержания в массиве значения
-                int result1 = str1.compareTo(String.valueOf(entry.getValue()));
-                int result2 = str2.compareTo(String.valueOf(entry.getValue()));
-
-
-                //if(result != 0 )
-                if(result1 == 0 )
-                {
-                    System.out.println("$$$$$$$$$$$$$ 20000000000000 $$$$$");
-
-                }
-                else if (result2 == 0)
-                {
-                    System.out.println("ЭЭЭЭЭЭЭЭЭЭЭ 5005005005000 ЭЭЭЭЭЭЭЭЭ");
-                }
-
-                //обычный if's -- выводит все блоки
-                //---------------------usdrub--------------------------------------
-                String c1 = "txt";
-
-                String keyNumber = (String) entry.getKey();
-                String keyName = (String) entry.getKey();
-                String keyRate = (String) entry.getKey();
-                String keyCharCode = (String) entry.getKey();
-                String keyExchangeData = (String) entry.getKey();
-                //int res = s1.compareTo((String) entry.getKey());
-                int res = c1.compareTo(keyRate);
-
-                if(res == 0 && loopList == 1)
-                {
-                    // setNameUAHPLN((String) entry.getKey());
-                  //  setNumberUAHPLN();
-                    setNameUAHPLN(keyRate);
-                    setRateUAHPLN(String.valueOf(entry.getValue()));
-                  //  setCharCodeUAHPLN();
-                  //  setExchangeDataUAHPLN();
-
-                    // цикл перебора массива
-
-                }
-                //---------------------eurrub--------------------------------------
-
-                // сюд попадает и первое значение так Rate  то тоже подходит
-                String c2 = "Rate";
-                String keyRate2 = (String) entry.getKey();
-                //int res = s1.compareTo((String) entry.getKey());
-                int res2 = c2.compareTo(keyRate2);
-
-                if(res2 == 0 && loopList == 2)
-                {
-                    // setNameUAHPLN((String) entry.getKey());
-                    setCurrencyName2(keyRate2);
-                    setCurrencyRate2(String.valueOf(entry.getValue()));
-                }
-                */
-
-
-            //======================END if CONDITION =========================================
-
-
-
-            // System.out.println("~~~~~~~Key: " + getNameUAHPLN() + " ~~~~~~~~Value: " + getRateUAHPLN());
-            // System.out.println("~~~~~~~Key: " +  entry.getKey() + " ~~~~~~~~Value: " + String.valueOf(entry.getValue()));
-
-        } //-- End for 2
-
-
-
-    } //-- End for 3
-
+    }
 
 }

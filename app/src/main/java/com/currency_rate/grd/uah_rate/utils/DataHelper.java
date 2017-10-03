@@ -74,9 +74,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class DataHelper extends ContextWrapper {
 
-
     public static String LOG_TAG = "log_DataHelper";
-    private final static String FILENAME = "my_sample.txt"; // имя файла
+    private final static String FILENAME = "rates_file.txt";
     String urlData = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
     boolean readyData = false;
     ArrayList<HashMap<String, String>> JSONList = new ArrayList<HashMap<String, String>>();
@@ -85,57 +84,36 @@ public class DataHelper extends ContextWrapper {
         super(base);
     }
 
-
-    //-----------------------------------------------
-
     public void loadJSONOfWeb(String hostData){
-        //public String loadJSONOfWeb(String hostData){
 
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String resultJson = "";
 
         try {
-            //URL url = new URL("http://androiddocs.ru/api/friends.json");
-
 
             URL url = new URL(hostData);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            //...............................................................
             InputStream inputStream = urlConnection.getInputStream();
             StringBuffer buffer = new StringBuffer();
 
             reader = new BufferedReader(new InputStreamReader(inputStream));
 
-            //...............................................................
-
-            //StringBuffer buffer = new StringBuffer();
             String line;
             while ((line = reader.readLine()) != null) {
                 buffer.append(line);
-                //resultJson = line;
-                Log.d(LOG_TAG,"%%%%%%%%###=line is  = "+line);
+                Log.d(LOG_TAG,"line is  = "+line);
 
             }
 
             resultJson = buffer.toString();
-
-
-
-            //temp
-            // resultJson = NBUParse();
-
-            // plus    +
-            //---------------save in file ----------------------
-            // отрываем поток для записи
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
                     openFileOutput(FILENAME, MODE_PRIVATE)));
-            // пишем данные
             bw.write(resultJson.toString());
-            // закрываем поток
+
             bw.close();
             readyData = true;
             //---------------------------------------------------
@@ -168,26 +146,14 @@ public class DataHelper extends ContextWrapper {
         if (f.length() != 0) {
 
             try {
-                //Открыть поток для для открытия файла - физически
                 InputStream inputStream = openFileInput(FILENAME);
-                //t reads bytes and decodes them into characters using a specified charset - он читает байты и декодирует их в символы, используя указанную кодировку.
                 InputStreamReader isr = new InputStreamReader(inputStream);
-                //Использование буфера призвано увеличить производительность чтения данных из потока.
+
                 BufferedReader bfReader = new BufferedReader(isr);
 
-                //потокобезопасный  буферстрок
-                StringBuilder builder = new StringBuilder();
                 StringBuffer buffer = new StringBuffer();
                 String line ="";
 
-                //читаем содержимое из фаайла
-                /*
-                while((line = bfReader.readLine()) != null){
-                    Log.d(LOG_TAG, line);
-                    JSON_STRING = line;
-
-                }
-                */
                 while ((line = bfReader.readLine()) != null) {
                     buffer.append(line);
                 }
@@ -203,10 +169,7 @@ public class DataHelper extends ContextWrapper {
             }
 
         }else{
-            // обновить данные и записать в файл
-            //saveJSONInFile(loadJSONOfWeb(hostData));
-            //  Can't create handler inside thread that has not called Looper.prepare()
-            // Toast.makeText(this, "Проверте подключение к интернет. \nOбновите данные", Toast.LENGTH_SHORT).show();
+
             Log.d(LOG_TAG, "Файл пустой ! Обновите данные с сети. ");
             res = null;
         }
@@ -215,7 +178,6 @@ public class DataHelper extends ContextWrapper {
 
     //-----------------------------------------------
     public void convertJSONToMap(String j){
-        // public void convertJSONToMap(){
 
         String jsonString  = j;
 
@@ -223,55 +185,37 @@ public class DataHelper extends ContextWrapper {
 
             try {
 
-                // JSONObject jsonObject = new JSONObject(jsonString);
                 JSONArray jsonArray = new JSONArray(jsonString);
-                // JSONArray jsonArray = jsonObject.getJSONObject("query").getJSONObject("results").getJSONArray("rate");
-
                 StringBuilder builder = new StringBuilder();
-                StringBuilder builder2 = new StringBuilder();
-                StringBuffer buffer = new StringBuffer();
 
-                String valueD, valueE;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Log.d(LOG_TAG, "Это цикл " + i);
                     JSONObject objectInArray = jsonArray.getJSONObject(i);
                     Map<String, String> hmap = new HashMap<String, String>();
 
                     //----------------------------------------------------------------------------------
-                    //итератор - пребор элементов объкета,массива,колллекции ...
                     Iterator key = objectInArray.keys();
-                    //  Перебрать и записать в колеекцию  например HashMap контенер птом читать с колекции
-                    int loop = 0; //-1;
+                    int loop = 0;
                     while (key.hasNext()) {
                         String k = key.next().toString();
                         loop++;
-                        //names[i]
+
                         hmap.put(k, objectInArray.getString(k));
                         String valueS = "Key : " + k + ", value : " + objectInArray.getString(k);
                         Log.d(LOG_TAG, "Key : " + k + ", value : " + objectInArray.getString(k));
                     }
                     //----------------------------------------------------------------------------------
                     JSONList.add((HashMap<String, String>) hmap);
-                    // myList.add(i, (HashMap<String, String>) hmap);
-
-                    // Log.d(TAG, objectInArray.toString());
-                    Log.d(LOG_TAG, "=/=/=/=/=/=/=/=/=/=/=/= quantity(amount) List item(s) "+JSONList.size());
                 }
                 //-------------------------------------------------
             } catch (Exception e) {
                 e.printStackTrace();
-                // textView3.setText("Ошибка  Конвертации catch ");
-                Log.d(LOG_TAG, " Ошибка  Конвертации catch ! ");
+                Log.d(LOG_TAG, " Ошибка  Конвертации! ");
             } // !
         }else{
-            Log.d(LOG_TAG, " JSON_STRING  - Пустая ! ");
-            // textView3.setText("JSON_STRING  - Пустая !");
+            Log.d(LOG_TAG, " Empty");
         }
     }
-    // -----------------------------------------------
-
-
-
     //---------------------------------------------------------------------
     public String[] showDataPrepareAll(){
 
@@ -335,10 +279,6 @@ public class DataHelper extends ContextWrapper {
         String ccValueSilver = parseList.getCharCodeUAHSilverXAG();
         String edValueSilver = parseList.getExchangeDataUAHSilverXAG();
         //...........................................................
-
-
-        //  textView3.setText("Вывод с showDataPrepare " +n+" "+r+"\n"+r2+""+n2);
-        //   textView3.setText("Вывод с showDataPrepare " +n+" "+r+" "+cr);
 
         String uahusdAall = numberValueUAHUSD+" - "+txtValueUAHUSD+" - "+ccValueUAHUSD +" - "+edValueUAHUSD+" - "+rateValueUAHUSD;
         String uahusd = txtValueUAHUSD+" ("+ccValueUAHUSD +") - "+edValueUAHUSD+" - "+rateValueUAHUSD+" UAH";

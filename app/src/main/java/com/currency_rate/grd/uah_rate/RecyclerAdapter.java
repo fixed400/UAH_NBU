@@ -4,7 +4,6 @@ package com.currency_rate.grd.uah_rate;
  * Created by grd on 11/18/16.
  */
 
-//  http://androiddocs.ru/vidzhet-recyclerview-prostoj-primer/
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,7 +34,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
-
     public RecyclerAdapter(String[] dataset) {
         mDataset = dataset;
     }
@@ -58,8 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         mDataset3 = dataset3;
         mDataset4 = dataset4;
     }
-
-
+    
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                          int viewType) {

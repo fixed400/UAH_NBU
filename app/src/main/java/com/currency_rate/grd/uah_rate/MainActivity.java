@@ -1,12 +1,5 @@
 package com.currency_rate.grd.uah_rate;
 
-//источники:
-// https://bank.gov.ua/control/uk/publish/article?art_id=38441973   (ночью нету данных - пусто)
-// http://webstrannik.ru/poluchit-kurs-dollara-evro-grivny-na-PHP.html
-// http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote
-// https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%3D%22http%3A%2F%2Ffinance.yahoo.com%2Fd%2Fquotes.csv%3Fe%3D.csv%26f%3Dnl1d1t1%26s%3Dusdeur%3DX%22%3B&format=json&callback=
-// http://content.finance.ua/ru/xml/currency-cash
-// http://meumobi.github.io/stocks%20apis/2016/03/13/get-realtime-stock-quotes-yahoo-finance-api.html
 
 import android.app.DialogFragment;
 import android.content.Context;
@@ -109,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
     }//--End onCreate()
 
     public void fillData(){
@@ -158,5 +150,5 @@ public class MainActivity extends AppCompatActivity {
         return true;
 
     }
-    
+
 }
